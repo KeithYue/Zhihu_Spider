@@ -29,6 +29,9 @@ class ZhiHuQ(Item):
     user = Field(
             output_processor = TakeFirst()
             )
+    num = Field(
+            output_processor = TakeFirst()
+            )
 
 # zhihu user
 class ZhiHuU(Item):
@@ -62,3 +65,18 @@ class ZhiHuA(Item):
             input_processor = MapCompose(lambda x: int(x)),
             output_processor = TakeFirst()
             )
+
+class ZhiHuU_T(Item):
+    '''
+    Zhihu user topic relationship
+    '''
+    crawled_from = Field(
+            output_processor = TakeFirst()
+            )
+    user_url = Field(
+            output_processor = TakeFirst()
+            )
+    topic_url = Field(
+            output_processor = TakeFirst()
+            )
+

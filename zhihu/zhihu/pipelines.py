@@ -40,12 +40,14 @@ class ZhihuPipeline(object):
 
     def process_item(self, item, spider):
         if isinstance(item, ZhiHuQ):
-            print 'It is question'
+            # print 'It is question'
             self.exporters['question'].export_item(item)
         elif isinstance(item, ZhiHuA):
-            print 'It is answer'
+            # print 'It is answer'
             self.exporters['answer'].export_item(item)
-        else:
-            print 'It is user'
+        elif isinstance(item, ZhiHuU):
+            # print 'It is user'
             self.exporters['user'].export_item(item)
+        else:
+            pass
         return item

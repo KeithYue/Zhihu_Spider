@@ -43,6 +43,7 @@ class ZhihuSpiderSpider(BaseSpider):
         sel = Selector(response)
         answers_xpath = '//div[@id="zh-question-answer-wrap"]/div[contains(@class, "zm-item-answer")]'
         asker_xpath = '//div[contains(@class, "zh-question-followers-sidebar")]//a[contains(@class, "zm-item-link-avatar")]'
+        answer_number = 0
 
         # use Itemloader to populate the data
         # question
@@ -57,6 +58,7 @@ class ZhihuSpiderSpider(BaseSpider):
         asker_loader.add_xpath('name', '//div[contains(@class, "zh-question-followers-sidebar")]//a[contains(@class, "zm-item-link-avatar")][1]/@title')
         asker_loader.add_xpath('url', '//div[contains(@class, "zh-question-followers-sidebar")]//a[contains(@class, "zm-item-link-avatar")][1]/@href')
         asker_loader.add_value('id', generate_uid(asker_loader.get_output_value('name')))
+        print asker_loader.get_output_value('name')
 
         # add user to question field
         q_loader.add_value('user', asker_loader.load_item())
@@ -80,10 +82,16 @@ class ZhihuSpiderSpider(BaseSpider):
             user_loader.add_xpath('url', './/div[contains(@class, "zm-item-answer-author-info")]/h3//a[2]/@href')
             if user_loader.get_output_value('name') is not None:
                 # print user_loader.get_output_value('name').encode('utf-8')
+
+                # add answer_number
+                answer_number += 1
                 user_loader.add_value('id', generate_uid(user_loader.get_output_value('name')))
                 answer_loader.add_value('asr', user_loader.load_item())
                 yield answer_loader.load_item()
                 yield user_loader.load_item()
             else:
                 continue
+
+        q_loader.add_value('num', answer_number)
+        print q_loader.get_output_value('num')
 
