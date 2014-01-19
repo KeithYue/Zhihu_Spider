@@ -31,4 +31,8 @@ ZHIHU_USER_ADJ = './zhihu_dat/user_adj.dat'
 # this for truth data
 ZHIHU_TRUTH_ADJ = './zhihu_dat/truth.dat'
 
+# this for user profile
+ZHIHU_USER_Q_NUMBER = './zhihu_dat/user_q_num.dat'
+ZHIHU_USER_Q_SCORE = './zhihu_dat/user_q_score.dat'
+
 dictionary = corpora.Dictionary.load(ZHIHU_DICT_PATH)
