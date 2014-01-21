@@ -36,3 +36,6 @@ ZHIHU_USER_Q_NUMBER = './zhihu_dat/user_q_num.dat'
 ZHIHU_USER_Q_SCORE = './zhihu_dat/user_q_score.dat'
 
 dictionary = corpora.Dictionary.load(ZHIHU_DICT_PATH)
+
+# formateed user topic dat
+ZHIHU_USER_TOPIC_PATH = './zhihu_dat/zhihu_user_topic.dat'
