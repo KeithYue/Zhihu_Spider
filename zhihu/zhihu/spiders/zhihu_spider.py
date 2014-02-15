@@ -27,8 +27,8 @@ class ZhihuSpiderSpider(BaseSpider):
     def start_requests(self):
         return [FormRequest(
             "http://www.zhihu.com/login",
-            formdata = {'email':'buaawangyue@gmail.com',
-                'password':'5805880'
+            formdata = {'email':'example.com',
+                'password':'123456'
                 },
             callback = self.after_login
             )]
